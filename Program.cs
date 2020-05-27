@@ -1,12 +1,15 @@
 ﻿using System;
+using System.Collections.Generic;
 
-namespace C_BingoCardGenerator
+namespace bingoCardGenerator
 {
     class Program
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            Menu newGame = new Menu();
+
+            newGame.Start();
         }
     }
 }
