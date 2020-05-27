@@ -67,38 +67,49 @@ namespace bingoCardGenerator
             double listLength = newCard.ValueList.Count;
             int rowLength = Convert.ToInt32(Math.Sqrt(listLength));
 
+            int reset = Convert.ToInt32(listLength) - (rowLength + 1);
+            int breakLine = 0;
+
             // sorts list numerically
             newCard.ValueList.Sort();
 
             for (int i = 0; i < listLength; i++)
             {
 
-                //inserts break
-                if (i == rowLength)
+                while (breakLine <= i)
                 {
-                    // evens markers for single digit numbers
-                    if (newCard.ValueList[i] < 10)
+                    //inserts break
+                    if (breakLine == rowLength)
                     {
+                        breakLine -= reset;
                         Console.WriteLine();
-                        Console.Write(newCard.ValueList[i] + "    | ");
-                    }
-                    else
-                    {
-                        Console.WriteLine();
-                        Console.Write(newCard.ValueList[i] + "   | ");
-                    }
 
-                }
-                else
-                {
-                    // evens markers for single digit numbers
-                    if (newCard.ValueList[i] < 10)
-                    {
-                        Console.Write(newCard.ValueList[i] + "    | ");
+                        // evens markers for single digit numbers
+                        if (newCard.ValueList[breakLine] < 10)
+                        {
+                            Console.Write(newCard.ValueList[breakLine] + "    | ");
+                            breakLine += rowLength;
+                        }
+                        else
+                        {
+                            Console.Write(newCard.ValueList[breakLine] + "   | ");
+                            breakLine += rowLength;
+                        }
+
                     }
                     else
                     {
-                        Console.Write(newCard.ValueList[i] + "   | ");
+                        // evens markers for single digit numbers
+                        if (newCard.ValueList[breakLine] < 10)
+                        {
+                            Console.Write(newCard.ValueList[breakLine] + "    | ");
+                            breakLine += rowLength;
+                        }
+                        else
+                        {
+                            Console.Write(newCard.ValueList[breakLine] + "   | ");
+                            breakLine += rowLength;
+                        }
                     }
                 }
             }
