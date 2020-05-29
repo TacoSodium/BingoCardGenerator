@@ -14,12 +14,12 @@ namespace bingoCardGenerator
 
         public void CreateNewCard(double cardSize)
         {
-            int newCard = Convert.ToInt32(Math.Pow(cardSize, cardSize));
+            int newCard = Convert.ToInt32(Math.Pow(cardSize, 2));
+
+            this.ValueList.Clear();
 
             List<int> duplicates = new List<int>();
             Random randomValue = new Random();
-
-            this.ValueList.Clear();
 
             for (int i = 0; i < newCard; i++)
             {

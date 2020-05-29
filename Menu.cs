@@ -64,53 +64,32 @@ namespace bingoCardGenerator
         public void ViewCard()
         {
             // finds length of list and where breaks should be
-            double listLength = newCard.ValueList.Count;
-            int rowLength = Convert.ToInt32(Math.Sqrt(listLength));
+            double dblListLength = newCard.ValueList.Count;
+            int rowLength = Convert.ToInt32(Math.Sqrt(dblListLength));
 
-            int reset = Convert.ToInt32(listLength) - (rowLength + 1);
+            int listLength = Convert.ToInt32(dblListLength);
+            int maxRange = listLength + rowLength - 1;
+            int reset = listLength - 1;
+            int j = 0;
             int breakLine = 0;
 
             // sorts list numerically
             newCard.ValueList.Sort();
 
-            for (int i = 0; i < listLength; i++)
+            for (int i = 0; i <= maxRange; i++)
             {
-
-                while (breakLine <= i)
+                //inserts break
+                if (breakLine == rowLength) {
+                    j -= reset;
+                    breakLine = 0;
+                    Console.WriteLine();
+                }
+                else
                 {
-                    //inserts break
-                    if (breakLine == rowLength)
-                    {
-                        breakLine -= reset;
-                        Console.WriteLine();
-
-                        // evens markers for single digit numbers
-                        if (newCard.ValueList[breakLine] < 10)
-                        {
-                            Console.Write(newCard.ValueList[breakLine] + "    | ");
-                            breakLine += rowLength;
-                        }
-                        else
-                        {
-                            Console.Write(newCard.ValueList[breakLine] + "   | ");
-                            breakLine += rowLength;
-                        }
-
-                    }
-                    else
-                    {
-                        // evens markers for single digit numbers
-                        if (newCard.ValueList[breakLine] < 10)
-                        {
-                            Console.Write(newCard.ValueList[breakLine] + "    | ");
-                            breakLine += rowLength;
-                        }
-                        else
-                        {
-                            Console.Write(newCard.ValueList[breakLine] + "   | ");
-                            breakLine += rowLength;
-                        }
-                    }
+                    Console.Write(newCard.ValueList[j] + "\t| ");
+                    // For each index printed jump ahead by the rowcount
+                    j += rowLength;
+                    breakLine++;
                 }
             }
 
